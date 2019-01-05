@@ -16,15 +16,7 @@
     <% if alert %>
       <p class="alert alert-danger"><%= alert %></p>
     <% end %>
-
-
-    <div id="wrapper">
-      <%= render '/layouts/header'%>
-      <%= render '/layouts/sidebar'%>
-      <div id="page-wrapper">
-        <%= yield %>
-      </div>
-    </div>
+    <%= yield %>
     <%= render '/layouts/footer'%>
   </body>
 </html>
