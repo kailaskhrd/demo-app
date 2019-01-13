@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_06_105143) do
+ActiveRecord::Schema.define(version: 2019_01_13_143048) do
+
+  create_table "roles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -34,12 +40,22 @@ ActiveRecord::Schema.define(version: 2019_01_06_105143) do
     t.datetime "updated_at", null: false
     t.string "provider"
     t.string "uid"
+    t.string "username"
+    t.string "name"
+    t.string "nickname"
+    t.string "image"
+    t.text "tokens"
+    t.string "auth_token"
+    t.datetime "token_created_at"
+    t.index ["auth_token", "token_created_at"], name: "index_users_on_auth_token_and_token_created_at"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["provider"], name: "index_users_on_provider"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
     t.index ["uid"], name: "index_users_on_uid"
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
 end
