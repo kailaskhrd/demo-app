@@ -46,10 +46,13 @@ gem 'redis', '~> 4.0'
 gem 'redis-namespace'
 
 gem 'devise', '~> 4.4.3'
-gem 'devise_token_auth', '~> 0.1.43'
+#gem 'devise_token_auth', '~> 0.1.43'
 
-gem 'omniauth'
-gem 'omniauth-facebook'
+gem 'omniauth', '~> 1.6.1'
+gem 'omniauth-facebook', '~> 4.0.0'
+#gem 'hashie','~> 3.5.7'
+
+gem 'ancestry'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
