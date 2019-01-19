@@ -2,6 +2,8 @@ require 'sidekiq/web'
 require 'api_version'
 Rails.application.routes.draw do
 
+  resources :products
+  resources :categories
 
   namespace :api, defaults: { format: :json } do
     scope module: :v1, constraints: ApiVersion.new('v1', true) do
@@ -10,8 +12,6 @@ Rails.application.routes.draw do
       delete "/sign-out"      => "sessions#destroy"
     end
   end
-
-  resources :categories
 
   get 'dashboard/index'
   root to: 'dashboard#index'
