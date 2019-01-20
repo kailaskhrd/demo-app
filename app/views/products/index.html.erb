@@ -1,26 +1,34 @@
-<h1>Listing products</h1>
-
-<table class ="table">
+<h1>Product List</h1>
+<div class="table-responsive">
+  <table class ="table">
   <tr>
+    <th>Photo</th>
     <th>Title</th>
     <th>Price</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Published</th>
+    <th>Deleted</th>
+    <th>Action</th>
   </tr>
 
-<% @products.each do |product| %>
-  <tr>
-    <td><%= product.name %></td>
-    <td><%= product.price %></td>
-    <td><%= link_to 'Show', product %></td>
-    <td><%= link_to 'Edit', edit_product_path(product) %></td>
-    <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+  <% @products.each do |product| %>
+    <tr>
+      <td>
+        <%#= image_tag product.photo.attached? ? product.photo : "", style: "width:100px;height:100px"%>
+      </td>
+      <td><%= product.title %></td>
+      <td><%= product.price %></td>
+      <td><%= product.published %></td>
+      <td><%= product.deleted_at.try(:strftime,'%d-%m-%Y') %></td>
+      <td>
+        <%= link_to 'Show', product %> |
+        <%= link_to 'Edit', edit_product_path(product) %> |
+        <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </td>
+    </tr>
+  <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Product', new_product_path %>
+<%=will_paginate @products%>
+ <br />
+ <div><%= link_to 'New Product', new_product_path %></div>
+</div>
 

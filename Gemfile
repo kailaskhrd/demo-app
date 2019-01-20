@@ -53,6 +53,12 @@ gem 'omniauth-facebook', '~> 4.0.0'
 #gem 'hashie','~> 3.5.7'
 
 gem 'ancestry'
+gem 'will_paginate', '~> 3.1.0'
+
+# for caching and sweepers
+gem 'rails-observers'
+gem 'actionpack-page_caching'
+gem 'actionpack-action_caching'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
