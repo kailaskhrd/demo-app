@@ -3,7 +3,9 @@
   <table class ="table">
     <tr>
       <td></td>
-      <td><%= image_tag @product.photo %></td>
+      <td>
+        <%= image_tag @product.photo.attached? ? @product.photo : "", style: "width:100px;height:100px"%>
+      </td>
     </tr>
 
     <tr>
@@ -23,6 +25,11 @@
     <tr>
       <td>Category</td>
       <td><%=@product.category.try(:name)%></td>
+    </tr>
+
+    <tr>
+      <td>Published</td>
+      <td><%=@product.published%></td>
     </tr>
 
   </table>

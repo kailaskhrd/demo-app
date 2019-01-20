@@ -1,7 +1,11 @@
 class ProductsController < ApplicationController
   before_action :category_list, except:[:destroy]
+  caches_page :index, :show
+  cache_sweeper :product_sweeper, only: [:create, :update, :destroy]
+
   def index
-    @products = Product.all
+    @products = Product.all#.includes(:photo_attachment).includes(:photo_blob)
+    @products = @products.paginate(:page => params[:page], :per_page => 5)
   end
 
   def new
