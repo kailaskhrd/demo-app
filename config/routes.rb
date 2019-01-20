@@ -2,8 +2,11 @@ require 'sidekiq/web'
 require 'api_version'
 Rails.application.routes.draw do
 
-  resources :products
+
   resources :categories
+
+  get '/products/page/:page', :controller => 'products', :action => 'index'
+  resources :products
 
   namespace :api, defaults: { format: :json } do
     scope module: :v1, constraints: ApiVersion.new('v1', true) do
@@ -22,7 +25,7 @@ Rails.application.routes.draw do
       sessions: 'users/sessions',
       confirmations:'users/confirmations',
       passwords:'users/passwords',
-      unlocks:'users/unlocks',
+      unlocks:'utesers/unlocks',
       omniauth_callbacks: 'users/omniauth_callbacks'
     }
 
