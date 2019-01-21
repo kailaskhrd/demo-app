@@ -10,8 +10,11 @@ class ProductSweeper < ActionController::Caching::Sweeper
   end
 
   def clear_product_cache(product)
-    expire_page :controller => :products, :action => :index
-    expire_page :controller => :products, :action => :show, :id=> product
+    #expire_page :controller => :products, :action => :index
+    #expire_page :controller => :products, :action => :show, :id=> product
+
+    expire_action :controller => :products, :action => :index
+    expire_action :controller => :products, :action => :show, :id=> product
   end
 
 end

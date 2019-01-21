@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :categories
 
-  get '/products/page/:page', :controller => 'products', :action => 'index'
+  get '/products/page/:page', :controller => 'products', :action => 'index', :as => "product_pages"
   resources :products
 
   namespace :api, defaults: { format: :json } do

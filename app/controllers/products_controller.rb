@@ -1,6 +1,8 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_user!
   before_action :category_list, except:[:destroy]
-  caches_page :index, :show
+  #caches_page :index, :show
+  caches_action :index, :show
   cache_sweeper :product_sweeper, only: [:create, :update, :destroy]
 
   def index
