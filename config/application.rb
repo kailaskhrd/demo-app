@@ -15,6 +15,8 @@ module DemoApp
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+    config.action_controller.page_cache_directory = "#{Rails.root}/public"
     config.autoload_paths += %w(#{RAILS_ROOT}/app/sweepers)
+    config.active_record.observers = [:user_observer]
   end
 end

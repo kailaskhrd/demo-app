@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :category_list, except:[:destroy]
+  #before_action :authenticate_user!
+  before_action :category_list, only:[:new, :edit]
   #caches_page :index, :show
   caches_action :index, :show
   cache_sweeper :product_sweeper, only: [:create, :update, :destroy]
@@ -23,13 +23,16 @@ class ProductsController < ApplicationController
   end
 
   def create
+=begin
     @product = Product.new(product_params)
     if @product.valid?
       @product.save!
       redirect_to @product, notice: 'Product was successfully created.'
     else
+=end
+      binding.pry
       render :new
-    end
+    #end
   end
 
   def update
